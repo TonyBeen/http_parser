@@ -4,7 +4,7 @@ SOFLAGS := -fPIC
 
 RG := ragel
 
-INSTALL_PATH := /usr/local/lib
+INSTALL_PATH := /usr/local
 
 SRC_GENERATE := \
 	http_response_parser.cpp \
@@ -13,6 +13,8 @@ SRC_GENERATE := \
 OBJ_LIST := \
 	http_response_parser.o \
 	http_request_parser.o
+
+HEADER_LIST := $(wildcard ./*.h)
 
 INCLUDE := -I./
 
@@ -24,8 +26,10 @@ TARGET := libhttp_parser.so
 default : $(TARGET)
 
 install : $(TARGET)
-	$(shell sudo mv $(TARGET) $(INSTALL_PATH))
-	sudo ldconfig
+	-if [ ! -d "$(INSTALL_PATH)/include/http_parser/" ]; then sudo mkdir $(INSTALL_PATH)/include/http_parser/; fi
+	-sudo cp -r -a $(HEADER_LIST) $(INSTALL_PATH)/include/http_parser
+	-sudo mv $(TARGET) $(INSTALL_PATH)/lib
+	-sudo ldconfig
 
 $(TARGET) : $(OBJ_LIST)
 	$(CC) $^ -o $@ -shared $(SO_PATH) $(SO_DEPEND)
