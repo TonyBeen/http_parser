@@ -89,7 +89,7 @@
 
     message_header = field_name ":" lws* field_value :> CRLF %write_field_value;
 
-    data_content = ascii -- (HTTP_CTL);
+    data_content = any;
     http_data = data_content* >mark %http_set_data;
 
     main := Response_Line ( message_header )* ( CRLF ) (http_data) %done;
