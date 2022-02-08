@@ -2,9 +2,11 @@ CC := g++
 CXXFLAGS := -std=c++11 -Wall -g
 SOFLAGS := -fPIC
 
-RG : ragel
+RG := ragel
 
-SRC_LIST := \
+SRC_LIST := 
+
+SRC_GENERATE := \
 	http_response_parser.cpp
 
 OBJ_LIST := \
@@ -29,4 +31,4 @@ http_response_parser.cpp : http_response_parser.rl
 .PHONY: clean $(TARGET) all install uninstall
 
 clean:
-	-rm -rf $(OBJ_LIST)
+	-rm -rf $(OBJ_LIST) $(SRC_GENERATE)
