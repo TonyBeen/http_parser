@@ -20,7 +20,7 @@ SO_DEPEND :=
 TARGET := libhttp_parser.so
 
 $(TARGET) : $(OBJ_LIST)
-	$(CC) $^ -o $@ $(SO_PATH) $(SO_DEPEND)
+	$(CC) $^ -o $@ -shared $(SO_PATH) $(SO_DEPEND)
 
 %.o : %.cpp
 	$(CC) $^ -o $@ -c $(CXXFLAGS) $(INCLUDE) $(SOFLAGS)
