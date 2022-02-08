@@ -4,6 +4,8 @@ SOFLAGS := -fPIC
 
 RG := ragel
 
+INSTALL_PATH := /usr/local/lib
+
 SRC_LIST := 
 
 SRC_GENERATE := \
@@ -19,14 +21,28 @@ SO_DEPEND :=
 
 TARGET := libhttp_parser.so
 
+default : $(TARGET)
+
+install : $(TARGET)
+	$(shell sudo mv $(TARGET) $(INSTALL_PATH))
+	sudo ldconfig
+
 $(TARGET) : $(OBJ_LIST)
 	$(CC) $^ -o $@ -shared $(SO_PATH) $(SO_DEPEND)
+	rm -rf $(OBJ_LIST) $(SRC_GENERATE)
 
 %.o : %.cpp
 	$(CC) $^ -o $@ -c $(CXXFLAGS) $(INCLUDE) $(SOFLAGS)
 
 http_response_parser.cpp : http_response_parser.rl
 	$(RG) $^ -o $@
+
+test :
+	make test_parse_response
+
+# 生成测试
+test_parse_response : test_parse_response.cc http_response_parser.cpp
+	g++ $^ -o $@
 
 .PHONY: clean $(TARGET) all install uninstall
 
