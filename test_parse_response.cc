@@ -65,7 +65,7 @@ int main(int argc, char **argv)
         "Expires: Thu, 19 Nov 1981 08:52:00 GMT\r\n"
         "Cache-Control: no-store, no-cache, must-revalidate\r\n"
         "Pragma: no-cache\r\n\r\n"
-        "{\"code\":200,\"message\":\"success\",\"data\":{\"country\":\"中国\",\"province\":\"河北\",\"city\":\"邢台\",\"service\":\"电信\"}}";
+        "{\"code\":200,\"message\":\"success\",\"data\":{\"country\":\"中国\",\"province\":\"天津\",\"city\":\"天津\",\"service\":\"电信\"}}";
 
     string temp = str;
 
