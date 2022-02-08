@@ -31,6 +31,11 @@ install : $(TARGET)
 	-sudo mv $(TARGET) $(INSTALL_PATH)/lib
 	-sudo ldconfig
 
+uninstall :
+	-sudo rm -rf $(INSTALL_PATH)/include/http_parser
+	-sudo rm -rf $(INSTALL_PATH)/lib/$(TARGET)
+	-sudo ldconfig
+
 $(TARGET) : $(OBJ_LIST)
 	$(CC) $^ -o $@ -shared $(SO_PATH) $(SO_DEPEND)
 	rm -rf $(OBJ_LIST) $(SRC_GENERATE)
