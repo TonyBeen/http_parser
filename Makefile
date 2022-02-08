@@ -41,13 +41,18 @@ http_request_parser.cpp : http_request_parser.rl
 
 test :
 	make test_parse_response
+	make test_parse_request
 
 # 生成测试
 test_parse_response : test_parse_response.cc http_response_parser.cpp
 	g++ $^ -o $@
 	-rm -rf http_response_parser.cpp
 
+test_parse_request : test_parse_request.cc http_request_parser.cpp
+	g++ $^ -o $@
+	-rm -rf http_request_parser.cpp
+
 .PHONY: clean $(TARGET) all install uninstall
 
 clean:
-	-rm -rf $(OBJ_LIST) $(SRC_GENERATE) test_parse_response
+	-rm -rf $(OBJ_LIST) $(SRC_GENERATE) test_parse_response test_parse_request
