@@ -72,7 +72,7 @@ void on_request_http_field(void *data, const char *field, size_t flen, const cha
     std::string _filed(field, flen);
     std::string _value(value, vlen);
 
-    printf("%s() [%s: %s]\n", __func__, _filed.c_str(), _value.c_str());
+    printf("%s() [%s][%s]\n", __func__, _filed.c_str(), _value.c_str());
 }
 
 int main(int argc, char **argv)
