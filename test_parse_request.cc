@@ -78,7 +78,7 @@ void on_request_http_field(void *data, const char *field, size_t flen, const cha
 int main(int argc, char **argv)
 {
     const char *getRequest = 
-        "GET /templets/new/script/jquery?user=1#fragment HTTP/1.1\r\n"
+        "GET /templets/new/script/jquery?user=1&password=123#fragment HTTP/1.1\r\n"
         "Host: c.biancheng.net\r\n"
         "Proxy-Connection: keep-alive\r\n"
         "Pragma: no-cache\r\n"
